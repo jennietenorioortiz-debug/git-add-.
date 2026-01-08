@@ -1,0 +1,214 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* BODY */
+body {
+    background: radial-gradient(circle at top, #1e293b, #020617);
+    color: #e5e7eb;
+    line-height: 1.6;
+}
+
+/* SECTIONS */
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HEADINGS */
+h1,
+h2 {
+    font-weight: 700;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, #22d3ee, #a855f7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding-top: 120px;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 20px auto;
+    color: #94a3b8;
+}
+
+/* BUTTON */
+.btn {
+    margin-top: 30px;
+    padding: 14px 36px;
+    background: linear-gradient(90deg, #22d3ee, #a855f7);
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #020617;
+}
+
+/* HOW IT WORKS */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* FORM CARD */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* INPUTS */
+input,
+select {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    font-size: 15px;
+}
+
+/* DROPDOWN FIX */
+select option {
+    background-color: #020617;
+    color: #ffffff;
+}
+
+/* PLAN */
+.plan {
+    display: none;
+    margin-top: 60px;
+}
+
+.phase {
+    margin-top: 30px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    border-left: 4px solid #22d3ee;
+}
+
+.phase h3 {
+    margin-bottom: 10px;
+}
+
+ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+    color: #cbd5f5;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+/* stagger effect */
+.phase {
+    opacity: 0;
+}
+
+.phase.show {
+    animation: fadeUp 0.7s ease forwards;
+}
+
+/* BUTTON MICRO-INTERACTION */
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.35);
+}
+
+/* INPUT FOCUS */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #22d3ee;
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.25);
+}
+
+/* PLAN FADE-IN */
+.plan {
+    animation: fadeUp 0.8s ease forwards;
+}
+
+/* SMOOTH MOBILE SPACING */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 16px;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.animate {
+    opacity: 1;
+    transform: translateY(0);
+}

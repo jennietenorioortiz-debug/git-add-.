@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signal Marketing</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- Charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1 class="gradient-text">Smart Marketing Assistant</h1>
+        <p>AI-powered strategy planning to help businesses grow with clarity and measurable results.</p>
+        <button id="scrollBtn" class="btn">Generate My Marketing Plan</button>
+    </section>
+
+    <!-- FORM -->
+    <section id="form">
+        <div class="card">
+            <h2>Define Your Marketing Mission</h2>
+
+            <input id="company" placeholder="Company Name" />
+
+            <select id="industry">
+                <option value="">Select Industry</option>
+                <option>E-commerce</option>
+                <option>Technology</option>
+                <option>Local Business</option>
+            </select>
+
+            <select id="goal">
+                <option value="">Select Primary Goal</option>
+                <option>Increase Brand Awareness</option>
+                <option>Generate Leads</option>
+                <option>Boost Sales</option>
+            </select>
+
+            <input id="audience" placeholder="Target Audience" />
+            <input id="budget" type="number" placeholder="Monthly Budget ($)" />
+
+            <select id="timeline">
+                <option value="">Campaign Timeline</option>
+                <option>3 Months</option>
+                <option>6 Months</option>
+                <option>12 Months</option>
+            </select>
+
+            <button id="generateBtn" class="btn">
+                Generate Marketing Plan
+            </button>
+        </div>
+    </section>
+
+    <!-- AI PLAN OUTPUT -->
+    <section id="planSection" class="plan" style="display:none;">
+        <h2>AI-Generated Marketing Plan</h2>
+        <div id="planContent"></div>
+    </section>
+
+    <!-- KPI DASHBOARD -->
+    <section id="kpiSection" class="plan" style="display:none;">
+        <h2>KPI Dashboard</h2>
+        <canvas id="kpiChart"></canvas>
+    </section>
+
+
+    <footer>
+        © 2026 Signal Marketing — Built by Jenny
+    </footer>
+
+    <!-- JS -->
+    <script src="./jsn/main.js"></script>
+
+</body>
+
+</html>
