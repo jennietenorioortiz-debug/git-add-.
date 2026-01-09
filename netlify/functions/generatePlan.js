@@ -1,4 +1,4 @@
-export async function handler(event) {
+exports.handler = async function (event) {
   try {
     if (event.httpMethod !== "POST") {
       return { statusCode: 405, body: "Method Not Allowed" };
@@ -39,14 +39,11 @@ Include:
 
     const data = await response.json();
 
-    // ✅ THIS is the correct place to read text
-    const outputText =
-      data.output_text ||
-      "No marketing plan was generated.";
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ plan: outputText })
+      body: JSON.stringify({
+        plan: data.output_text || "No marketing plan generated."
+      })
     };
 
   } catch (error) {
@@ -56,8 +53,4 @@ Include:
       body: JSON.stringify({ error: error.message })
     };
   }
-}
-
-}
-
-
+};
