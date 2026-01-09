@@ -1,58 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>Smart Marketing Assistant</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>Smart Marketing Assistant</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-    <h1>Smart Marketing Assistant</h1>
+  <h1>Smart Marketing Assistant</h1>
+  <p>AI-powered strategy planning to help businesses grow.</p>
 
-    <section>
-        <h2>Define Your Marketing Mission</h2>
+  <h2>Define Your Marketing Mission</h2>
 
-        <input id="company" placeholder="Company Name" />
+  <input id="company" placeholder="Company Name" />
 
-        <select id="industry">
-            <option value="">Select Industry</option>
-            <option value="Technology">Technology</option>
-            <option value="E-commerce">E-commerce</option>
-            <option value="Healthcare">Healthcare</option>
-        </select>
+  <select id="industry">
+    <option value="">Select Industry</option>
+    <option value="Technology">Technology</option>
+    <option value="E-commerce">E-commerce</option>
+    <option value="Healthcare">Healthcare</option>
+  </select>
 
-        <select id="goal">
-            <option value="">Select Primary Goal</option>
-            <option value="Increase Brand Awareness">Increase Brand Awareness</option>
-            <option value="Boost Sales">Boost Sales</option>
-            <option value="Generate Leads">Generate Leads</option>
-        </select>
+  <select id="goal">
+    <option value="">Select Primary Goal</option>
+    <option value="Increase Brand Awareness">Increase Brand Awareness</option>
+    <option value="Generate Leads">Generate Leads</option>
+    <option value="Boost Sales">Boost Sales</option>
+  </select>
 
-        <input id="audience" placeholder="Target Audience" />
-        <input id="budget" placeholder="Monthly Budget ($)" />
+  <input id="audience" placeholder="Target Audience" />
+  <input id="budget" placeholder="Monthly Budget ($)" />
 
-        <select id="timeline">
-            <option value="">Campaign Timeline</option>
-            <option value="1 Month">1 Month</option>
-            <option value="3 Months">3 Months</option>
-            <option value="6 Months">6 Months</option>
-        </select>
+  <select id="timeline">
+    <option value="">Campaign Timeline</option>
+    <option value="3 months">3 Months</option>
+    <option value="6 months">6 Months</option>
+  </select>
 
-        <!-- 🔴 THIS IS CRITICAL -->
-        <button id="generateBtn" type="button">
-            Generate Marketing Plan
-        </button>
-    </section>
+  <br /><br />
 
-    <!-- OUTPUT -->
-    <section id="planSection" style="display:none;">
-        <h2>AI-Generated Marketing Plan</h2>
-        <div id="planContent"></div>
-    </section>
+  <button id="generateBtn">Generate Marketing Plan</button>
 
-    <script src="main.js"></script>
+  <hr />
+
+  <section id="planSection" style="display:none;">
+    <h2>AI-Generated Marketing Plan</h2>
+    <div id="planContent"></div>
+  </section>
+
+  <script src="main.js"></script>
 </body>
-
 </html>
+
