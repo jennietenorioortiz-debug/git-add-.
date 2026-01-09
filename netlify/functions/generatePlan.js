@@ -11,14 +11,14 @@ exports.handler = async (event) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
             },
             body: JSON.stringify({
                 model: "gpt-4o-mini",
                 messages: [
                     {
                         role: "system",
-                        content: "You are an expert marketing strategist.",
+                        content: "You are a professional marketing strategist."
                     },
                     {
                         role: "user",
@@ -29,13 +29,13 @@ Company: ${company}
 Industry: ${industry}
 Goal: ${goal}
 Audience: ${audience}
-Budget: $${budget}
+Budget: ${budget}
 Timeline: ${timeline}
-`,
-                    },
+            `
+                    }
                 ],
-                temperature: 0.7,
-            }),
+                temperature: 0.7
+            })
         });
 
         const data = await response.json();
@@ -43,13 +43,14 @@ Timeline: ${timeline}
         return {
             statusCode: 200,
             body: JSON.stringify({
-                plan: data.choices[0].message.content,
-            }),
+                plan: data.choices[0].message.content
+            })
         };
+
     } catch (err) {
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: err.message }),
+            body: JSON.stringify({ error: err.message })
         };
     }
 };
