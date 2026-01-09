@@ -1,56 +1,61 @@
-console.log("main.js loaded");
+<!DOCTYPE html>
+<html lang="en">
 
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("generateBtn");
-  btn.addEventListener("click", generatePlan);
-});
+<head>
+    <meta charset="UTF-8" />
+    <title>Smart Marketing Assistant</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
 
-async function generatePlan() {
-  console.log("Generate button clicked");
+<body>
 
-  const companyInput = document.getElementById("company");
-  const industryInput = document.getElementById("industry");
-  const goalInput = document.getElementById("goal");
-  const audienceInput = document.getElementById("audience");
-  const budgetInput = document.getElementById("budget");
-  const timelineInput = document.getElementById("timeline");
+    <h1>Smart Marketing Assistant</h1>
 
-  if (!companyInput || !industryInput || !goalInput || !timelineInput) {
-    console.error("One or more inputs not found");
-    return;
-  }
+    <section>
+        <h2>Define Your Marketing Mission</h2>
 
-  const payload = {
-    company: companyInput.value,
-    industry: industryInput.value,
-    goal: goalInput.value,
-    audience: audienceInput.value,
-    budget: budgetInput.value,
-    timeline: timelineInput.value
-  };
+        <input id="company" placeholder="Company Name" />
 
-  console.log("Sending payload:", payload);
+        <select id="industry">
+            <option value="">Select Industry</option>
+            <option value="Technology">Technology</option>
+            <option value="E-commerce">E-commerce</option>
+            <option value="Healthcare">Healthcare</option>
+        </select>
 
-  try {
-    const res = await fetch("/.netlify/functions/generatePlan", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+        <select id="goal">
+            <option value="">Select Primary Goal</option>
+            <option value="Increase Brand Awareness">Increase Brand Awareness</option>
+            <option value="Boost Sales">Boost Sales</option>
+            <option value="Generate Leads">Generate Leads</option>
+        </select>
 
-    const data = await res.json();
-    console.log("Response from function:", data);
+        <input id="audience" placeholder="Target Audience" />
+        <input id="budget" placeholder="Monthly Budget ($)" />
 
-    const planSection = document.getElementById("planSection");
-    const planContent = document.getElementById("planContent");
+        <select id="timeline">
+            <option value="">Campaign Timeline</option>
+            <option value="1 Month">1 Month</option>
+            <option value="3 Months">3 Months</option>
+            <option value="6 Months">6 Months</option>
+        </select>
 
-    if (!planSection || !planContent) {
-      console.error("Plan section missing");
-      return;
-    }
+        <!-- 🔴 THIS IS CRITICAL -->
+        <button id="generateBtn" type="button">
+            Generate Marketing Plan
+        </button>
+    </section>
 
-    planSection.style.display = "block";
-    planContent.innerHTML = `<pre>${data.plan}</pre>`;
+    <!-- OUTPUT -->
+    <section id="planSection" style="display:none;">
+        <h2>AI-Generated Marketing Plan</h2>
+        <div id="planContent"></div>
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
 
   } catch (err) {
     console.error("Error generating plan:", err);
