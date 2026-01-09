@@ -1,28 +1,28 @@
 exports.handler = async (event) => {
-    try {
-        if (event.httpMethod !== "POST") {
-            return { statusCode: 405, body: "Method Not Allowed" };
-        }
+  try {
+    if (event.httpMethod !== "POST") {
+      return { statusCode: 405, body: "Method Not Allowed" };
+    }
 
-        const { company, industry, goal, audience, budget, timeline } =
-            JSON.parse(event.body);
+    const { company, industry, goal, audience, budget, timeline } =
+      JSON.parse(event.body);
 
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
-            },
-            body: JSON.stringify({
-                model: "gpt-4o-mini",
-                messages: [
-                    {
-                        role: "system",
-                        content: "You are a professional marketing strategist."
-                    },
-                    {
-                        role: "user",
-                        content: `
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: "You are a professional marketing strategist."
+          },
+          {
+            role: "user",
+            content: `
 Create a detailed marketing plan.
 
 Company: ${company}
@@ -31,26 +31,27 @@ Goal: ${goal}
 Audience: ${audience}
 Budget: ${budget}
 Timeline: ${timeline}
-            `
-                    }
-                ],
-                temperature: 0.7
-            })
-        });
+`
+          }
+        ],
+        temperature: 0.7
+      })
+    });
 
-        const data = await response.json();
+    const data = await response.json();
 
-        return {
-            statusCode: 200,
-            body: JSON.stringify({
-                plan: data.choices[0].message.content
-            })
-        };
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        plan: data.choices[0].message.content
+      })
+    };
 
-    } catch (err) {
-        return {
-            statusCode: 500,
-            body: JSON.stringify({ error: err.message })
-        };
-    }
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: err.message })
+    };
+  }
 };
+
