@@ -1,61 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
+console.log("main.js loaded");
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Smart Marketing Assistant</title>
-    <link rel="stylesheet" href="style.css" />
-</head>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("generateBtn");
+  btn.addEventListener("click", generatePlan);
+});
 
-<body>
+async function generatePlan() {
+  console.log("Generate button clicked");
 
-    <h1>Smart Marketing Assistant</h1>
+  const payload = {
+    company: document.getElementById("company").value,
+    industry: document.getElementById("industry").value,
+    goal: document.getElementById("goal").value,
+    audience: document.getElementById("audience").value,
+    budget: document.getElementById("budget").value,
+    timeline: document.getElementById("timeline").value
+  };
 
-    <section>
-        <h2>Define Your Marketing Mission</h2>
+  console.log("Sending payload:", payload);
 
-        <input id="company" placeholder="Company Name" />
+  try {
+    const res = await fetch("/.netlify/functions/generatePlan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
 
-        <select id="industry">
-            <option value="">Select Industry</option>
-            <option value="Technology">Technology</option>
-            <option value="E-commerce">E-commerce</option>
-            <option value="Healthcare">Healthcare</option>
-        </select>
+    const data = await res.json();
+    console.log("Response from function:", data);
 
-        <select id="goal">
-            <option value="">Select Primary Goal</option>
-            <option value="Increase Brand Awareness">Increase Brand Awareness</option>
-            <option value="Boost Sales">Boost Sales</option>
-            <option value="Generate Leads">Generate Leads</option>
-        </select>
-
-        <input id="audience" placeholder="Target Audience" />
-        <input id="budget" placeholder="Monthly Budget ($)" />
-
-        <select id="timeline">
-            <option value="">Campaign Timeline</option>
-            <option value="1 Month">1 Month</option>
-            <option value="3 Months">3 Months</option>
-            <option value="6 Months">6 Months</option>
-        </select>
-
-        <!-- 🔴 THIS IS CRITICAL -->
-        <button id="generateBtn" type="button">
-            Generate Marketing Plan
-        </button>
-    </section>
-
-    <!-- OUTPUT -->
-    <section id="planSection" style="display:none;">
-        <h2>AI-Generated Marketing Plan</h2>
-        <div id="planContent"></div>
-    </section>
-
-    <script src="main.js"></script>
-</body>
-
-</html>
+    document.getElementById("planSection").style.display = "block";
+    document.getElementById("planContent").innerHTML =
+      `<pre>${data.plan}</pre>`;
 
   } catch (err) {
     console.error("Error generating plan:", err);
