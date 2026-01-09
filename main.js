@@ -19,16 +19,22 @@ async function generatePlan() {
 
   console.log("Sending payload:", payload);
 
-  const res = await fetch("/.netlify/functions/generatePlan", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  });
+  try {
+    const res = await fetch("/.netlify/functions/generatePlan", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
 
-  const data = await res.json();
-  console.log("Response:", data);
+    const data = await res.json();
+    console.log("Response from function:", data);
 
-  document.getElementById("planSection").style.display = "block";
-  document.getElementById("planContent").innerHTML = `<pre>${data.plan}</pre>`;
+    document.getElementById("planSection").style.display = "block";
+    document.getElementById("planContent").innerHTML =
+      `<pre>${data.plan}</pre>`;
+
+  } catch (err) {
+    console.error("Error:", err);
+  }
 }
 
